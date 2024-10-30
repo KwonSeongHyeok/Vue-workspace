@@ -1,43 +1,44 @@
 <template>
 
-  <div v-if="1 == 2">
-    안녕하세요
-  </div>
-  <div v-else-if="1==3">
-    안녕하세요
-  </div>
-
-  <div class="black-bg" v-if="모달창열렸니 == true">
-    <div class="white-bg">
-      <img :src="원룸들[누른거].image" style="width: 100%;">
-      <h4>{{원룸들[누른거].title}}</h4>
-      <p>{{원룸들[누른거].content}}</p>
-      <p>{{원룸들[누른거].price}}원</p>
-      <button @click="모달창열렸니 = false">닫기</button>
-    </div>
-  </div>
+  <Modal :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
   
 
   <div class="menu">
     <a v-for="a in 메뉴들" :key="a">{{a}}</a>
   </div>
 
-  <div v-for="(작명, i) in 원룸들" :key="i">
-    <img :src="원룸들[i].image" class="room-img">
-    <h4 @click="모달창열렸니 = true; 누른거 = i">{{원룸들[i].title}}</h4> 
-    <p>{{원룸들[i].price}}원</p>
-  </div>
+  <Discount/>
+
+  <Card :원룸="원룸들[i]" v-for="(원룸, i) in 원룸들" :key="i"/>
+
+
+  <!-- <Card :원룸="원룸들[1]"/>
+  <Card :원룸="원룸들[2]"/>
+  <Card :원룸="원룸들[3]"/>
+  <Card :원룸="원룸들[4]"/>
+  <Card :원룸="원룸들[5]"/> -->
+  
+
+  <!-- <div v-for="(작명, i) in 원룸들" :key="i">
+      <img :src="원룸들[i].image" class="room-img">
+      <h4 @click="모달창열렸니 = true; 누른거 = i">{{원룸들[i].title}}</h4> 
+      <p>{{원룸들[i].price}}원</p>
+  </div> -->
 
 </template>
 
 <script>
 
 import data from './assets/oneroom.js';
+import Discount from './Discount.vue';
+import Modal from './assets/Modal.vue';
+import Card from './Card.vue';
 
 export default {
   name: 'App',
   data() {
     return {
+      오브젝트 : {name : 'Kim', age : 20},
       누른거 : 0,
       원룸들 : data,
       모달창열렸니 : false,
@@ -53,6 +54,9 @@ export default {
   },
 
   components: {
+    Discount,
+    Modal,
+    Card,
   }
 }
 </script>
@@ -64,6 +68,17 @@ body {
 div{
   box-sizing: border-box;
 }
+
+.discount{
+  background: #eee;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+
+
+
 .black-bg{
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.5);
