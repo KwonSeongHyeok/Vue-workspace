@@ -10,6 +10,12 @@
 
   <Discount/>
 
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="priceSort2">가격역순정렬</button>
+  <button @click="ganadaSort">가나다순정렬</button>
+  <button @click="sortBack">되돌리기</button>
+
+
   <Card @openModal="모달창열렸니=true; 누른거 = $event" :원룸="원룸들[i]" v-for="(원룸, i) in 원룸들" :key="i"/>
 
 
@@ -39,6 +45,7 @@ export default {
   name: 'App',
   data() {
     return {
+      원룸들오리지널 : [...data],
       오브젝트 : {name : 'Kim', age : 20},
       누른거 : 0,
       원룸들 : data,
@@ -51,7 +58,25 @@ export default {
   methods: {
     increase(){
       this.신고수[0] += 1;
-    }
+    },
+    priceSort(){
+      this.원룸들.sort(function(a, b){
+        return a.price - b.price
+      });
+    },
+    priceSort2(){
+      this.원룸들.sort(function(a, b){
+        return b.price - a.price
+      });
+    },
+    ganadaSort(){
+      this.원룸들.sort(function(a, b){
+        return a.title - b.title
+      });
+    },
+    sortBack(){
+      this.원룸들 = [...this.원룸들오리지널];
+    },
   },
 
   components: {
