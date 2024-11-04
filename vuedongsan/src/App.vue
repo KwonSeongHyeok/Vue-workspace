@@ -8,7 +8,7 @@
     <a v-for="a in 메뉴들" :key="a">{{a}}</a>
   </div>
 
-  <Discount/>
+  <Discount v-if="showDiscount == true" />
 
   <button @click="priceSort">가격순정렬</button>
   <button @click="priceSort2">가격역순정렬</button>
@@ -45,6 +45,7 @@ export default {
   name: 'App',
   data() {
     return {
+      showDiscount : true,
       원룸들오리지널 : [...data],
       오브젝트 : {name : 'Kim', age : 20},
       누른거 : 0,
@@ -71,7 +72,7 @@ export default {
     },
     ganadaSort(){
       this.원룸들.sort(function(a, b){
-        return a.title - b.title
+        return a.title.localeCompare(b.title, 'ko');
       });
     },
     sortBack(){
