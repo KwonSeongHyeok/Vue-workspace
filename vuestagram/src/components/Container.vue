@@ -1,8 +1,6 @@
 <template lang="">
   <div>
-    <Post />
-    <Post />
-    <Post />
+    <Post :게시물="게시물[i]" v-for="(a, i) in 게시물" :key="i"/>
   </div>
 </template>
 
@@ -14,6 +12,9 @@ export default {
     components : {
         Post : Post,
     },
+   props : {
+    게시물 : Object,
+   }
 };
 </script>
 
