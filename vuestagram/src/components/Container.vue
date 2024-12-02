@@ -9,7 +9,7 @@
       <div class="upload-image" :style="`background-image:url(${이미지})`"></div>
       <div class="filters">
         <FilterBox v-for="필터 in 필터들" :key="필터"  :이미지="이미지" :필터="필터">
-
+          {{ 필터 }}
         </FilterBox>
       </div>
     </div>
