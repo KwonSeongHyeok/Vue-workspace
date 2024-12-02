@@ -8,6 +8,11 @@
 <script>
 export default {
   name: "filterBoxComponent",
+  data(){
+    return{
+      msg : 'hello',
+    }
+  },
   props: {
     이미지: String,
     필터: String,
