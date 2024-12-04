@@ -16,8 +16,14 @@
   <h4>나이는 {{ $store.state.age }}이야</h4>
   <button @click="$store.commit('증가', 10)">버튼</button>
 
+  <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기버튼</button>
+
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event" />
   <button @click="more">더보기</button>
+
+  <p>{{now2}} {{ 카운터 }}</p>
+  <button @click="카운터++">버튼</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -55,6 +61,7 @@ export default {
       이미지: "",
       작성한글: '',
       선택한필터: '',
+      카운터: 0,
     };
   },
   mounted(){
@@ -66,7 +73,15 @@ export default {
   components: {
     Container: Container,
   },
+  computed : {
+    now2(){
+      return new Date()
+    },
+  },
   methods: {
+    now(){
+      return new Date()
+    },
     publish() {
       var 내게시물 = {
         name: "Kim Hyun",
