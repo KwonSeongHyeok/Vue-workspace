@@ -6,7 +6,7 @@ const store = createStore({
     return {
       name : 'kim',
       age : 20,
-      likes : [30, 40, 50],
+      likes : 30,
       좋아요눌렀니 : false,
       more : {},
     }

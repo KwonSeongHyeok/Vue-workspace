@@ -9,21 +9,20 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
+  
+  <p>{{ name }} {{ age}}  {{ likes}}</p>
 
-  <h4>안녕 {{ $store.state.name }}</h4>
+  <!-- <h4>안녕 {{ $store.state.name }}</h4>
   <button @click="$store.commit('이름변경')">버튼</button>
 
   <h4>나이는 {{ $store.state.age }}이야</h4>
-  <button @click="$store.commit('증가', 10)">버튼</button>
+  <button @click="증가(10)">버튼</button>
 
   <p>{{ $store.state.more }}</p>
-  <button @click="$store.dispatch('getData')">더보기버튼</button>
+  <button @click="$store.dispatch('getData')">더보기버튼</button> -->
 
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event" />
   <button @click="more">더보기</button>
-
-  <p>{{now2}} {{ 카운터 }}</p>
-  <button @click="카운터++">버튼</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -50,6 +49,7 @@
 import Container from "./components/Container.vue";
 import postdata from "./assets/postdata";
 import axios from "axios";
+import {mapMutations, mapState} from 'vuex';
 
 export default {
   name: "App",
@@ -74,14 +74,14 @@ export default {
     Container: Container,
   },
   computed : {
-    now2(){
-      return new Date()
+    name(){
+      return this.$store.state.name
     },
+    ...mapState(['name', 'age', 'likes']),
+    ...mapState({작명:'name', }),
   },
   methods: {
-    now(){
-      return new Date()
-    },
+    ...mapMutations(['setMore', '좋아요', '증가']),
     publish() {
       var 내게시물 = {
         name: "Kim Hyun",
